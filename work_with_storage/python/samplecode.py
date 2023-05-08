@@ -6,19 +6,19 @@ DESCRIPTION:
     This file provides a guided experience in performing a few basic tasks against Azure Blob storage.
 USAGE: python samplecode.py
     IMPORTANT:
-    Before working with this sample, you should have already set up two environment variables
-    at the command line:
-    AZURE_STORAGE_CONNECTION_STRING = "<connection string you retrieved in the portal>"
-    and 
-    SOURCE_FILE = 'BlobSample.txt'
-    Refer back to the lab instructions if you have not yet done this.
+    Make sure you have retrieved the primary connection string from the pre-deployed storage account
+    using the Azure Portal. Find the my_connection_string variable, below, and assign the connection string
+    to that variable by pasting it between the double-quotes.
+    
+    Save your work before running the code.
 """
 import os
 from azure.core.exceptions import ResourceNotFoundError, ResourceExistsError
 
 class PythonBlobLab(object):
 
-    my_connection_string = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+    my_connection_string = "[PASTE YOUR FULL CONNECTION STRING BETWEEN THESE QUOTES]"
+    source_file = "BlobSample.txt"
 
     def practice_operations(self):
 
@@ -86,7 +86,7 @@ class PythonBlobLab(object):
         """
         
         # [Put your code here]
-        with open(SOURCE_FILE, "myfile") as data:
+        with open(source_file, "myfile") as data:
             my_blob_client.upload_blob(data, blob_type="BlockBlob")
 
        
