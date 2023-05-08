@@ -1,0 +1,1 @@
+This repository is for use in PluralSight hands-on labs that help developers practice skills in using the Azure SDKs.
