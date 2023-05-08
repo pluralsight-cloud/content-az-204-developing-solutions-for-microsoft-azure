@@ -66,7 +66,7 @@ class PythonBlobLab(object):
         my_blob_client = my_container_client.get_blob_client("blobforlab")
 
     
-        #Upload the SOURCE_FILE using the blob client
+        #Upload the BlobSample.txt file using the blob client
         """
         Instructions:
         The blob type is "BlockBlob"
