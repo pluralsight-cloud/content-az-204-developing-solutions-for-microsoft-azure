@@ -49,7 +49,7 @@ class PythonBlobLab(object):
         It's just one line of code to instantiate the object and create the container.
         """
         # [Put your code here]
-        my_container_client = my_blob_service_client.create_container("containerforlab7")
+        my_container_client = my_blob_service_client.create_container("containerforlab")
 
         # Instantiate a new BlobClient object
         """
