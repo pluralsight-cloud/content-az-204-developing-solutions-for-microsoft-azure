@@ -1,6 +1,5 @@
 using System.Net;
 using Microsoft.Azure.Cosmos;
-using Microsoft.Azure.Cosmos.Fluent;
 
 namespace PracticeCosmos
 {
@@ -9,6 +8,7 @@ class Program
     {
     static async Task Main(string[] args)
         {   
+
             // Note, the object names in the code can be whatever you want, but using the ones suggested
             //  will make it somewhat easier to follow in the video walkthrough and lab guide.
             //  However, use the *exact* names given for the database and container resources you will
@@ -16,61 +16,46 @@ class Program
             //  b) Help keep your .NET work separate from your Python work, should you decide to do both.
             
             //Copy the primary connection string from the Cosmos DB account in the portal and paste it in place of the placeholder, below
-            string my_connection_string = "[ConnectionString]";
+            string my_connection_string = "AccountEndpoint=https://pluralsightlab-776-2c4.documents.azure.com:443/;AccountKey=BhvFeLlURzbSso1YW7Q8egOeEwMuITrZIkDYICmOlcMCFjfSHLSnLxqfooCGqdZyq2487SOWR9ISACDbJyNaFA==;";
 
             //Declare a CosmosClient, called myClient, using the connection string
             
             CosmosClient myClient = new (my_connection_string);
 
 
-            //Declare a Database, called myDatabase, from the Cosmos DB account called *exactly* "LabDBNet";
+            //Asynchronously create a Database, called myDatabase, with a resource Id/name of *exactly* "LabDBNet";
+            //Requirement: Attempt to create the database only if it does not already exist.
+            //Hints: The code for this code and all the commands that follow will be in this form:
+            //      Class myClass = await myPreviousClass.Create{Class}IfNotExistsAsync({property(s)});
             
-            Database myDatabase = myClient.GetDatabase("LabDBNet");
+            Database myDatabase = await myClient.CreateDatabaseIfNotExistsAsync("LabDBNet");
 
-            //Declare a ContainerProperties object, called containerProps, with the minimum properties:
-            //  "LabItemsNet" *exactly* for the container name and "/labPK" for the partition key path.
-            //  NOTE: There is a way to create a container directly without the use of the ContainerProperties
-            //  class. However, using ContainerProperties as a habit makes it easier to define additional
-            //  container properties when you create a new container.
+            //Asynchronously create a Container, called myContainer, on myDatabase, it does not already exist,
+            //  passing in the *exact* name of "LabItemsNet" and a partition key of *exactly* "/labPK"
             
-            //***You get this line of code as a "freebie"***
-            ContainerProperties containerProps = new ContainerProperties("LabItemsNet","/labPK");
-
-
-            //Declare a Container, called myContainer, on myDatabase, 
-            //  passing containerProps as a single parameter.
+            Container myContainer = await myDatabase.CreateContainerIfNotExistsAsync("LabItemsNet","/labPK");
             
-            Container myContainer = myDatabase.GetContainer(containerProps);
-            
-            //Use the GenericItem class (just outside of the Main method) to create an item object, 
+            //Use the GenericItem record (just outside of the Main method) to create an item object, 
             //  called myItem, to be upserted to the container.
-            //IMPORTANT: the id property should be assigned a GUID. Assign this value to that property:
-            //    "70b63682-b93a-4c77-aad2-65501347265f". If you create an item with that same GUID, the
-            //    upsert will overwrite the previous item. Alter the GUID value slightly if you decide
-            //    to upsert more than one item. The labPK property can be assigned any int and the name
-            //    property can be any string.
+            //IMPORTANT: the id property should be assigned a unique value, such as a GUID, like this:
+            //    "70b63682-b93a-4c77-aad2-65501347265f". The itemName property can be assigned any string and the labPK
+            //    property should be assigned "active" or "archived" -- though, to be truthful, there are no
+            //    actual constraints preventing labPK from being any value you choose.
 
             GenericItem myItem = new(
               id: "70b63682-b93a-4c77-aad2-65501347265f",
               itemName: "This is my string",
-              labPK: 5
+              labPK: "active"
             );
                        
-            //Upsert your item to the container you created
-            // Hint: The Main method is an async Task, so instantiate and ItemReponse object to "kick off"
-            // the task. Your code will start like this:
-            //                            ItemResponse response = await . . . 
-            
-            ItemResponse item = await myContainer.CreateItemAsync<GenericItem>(myItem, new PartitionKey(myItem.labPK));
+            // Declare a GenericItem to asynchronously upsert myItem to myContainer.
+           GenericItem upsertedItem = await myContainer.UpsertItemAsync<GenericItem>(myItem, new PartitionKey(myItem.labPK));
 
-    }
-        
-        public class GenericItem
-        {
-            public Guid id {get; set;}
-            public string? itemName {get; set;}
-            public int labPK {get; set;} 
-        }   
-    
+    } 
+    public record GenericItem (
+    string id,
+    string itemName,
+    string labPK 
+    );   
   }
 }       
