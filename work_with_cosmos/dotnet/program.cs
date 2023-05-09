@@ -61,7 +61,7 @@ class Program
             // the task. Your code will start like this:
             //                            ItemResponse response = await . . . 
             
-            ItemResponse item = await myContainer.CreateItemAsync(myItem, new PartitionKey(myItem.labPK));
+            ItemResponse item = await myContainer.CreateItemAsync<GenericItem>(myItem, new PartitionKey(myItem.labPK));
 
     }
         
