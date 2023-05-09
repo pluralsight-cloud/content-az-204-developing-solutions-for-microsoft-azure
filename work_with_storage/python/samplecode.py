@@ -33,8 +33,8 @@ class PythonBlobLab(object):
         """
 
         # [Put your code here]        
-        from azure.storage.blob import BlobServiceClient
-        my_blob_service_client = BlobServiceClient.from_connection_string(self.my_connection_string)
+
+        
 
         # Instantiate a ContainerClient object and create the container.
         """
@@ -49,7 +49,8 @@ class PythonBlobLab(object):
         It's just one line of code to instantiate the object and create the container.
         """
         # [Put your code here]
-        my_container_client = my_blob_service_client.create_container("containerforlab")
+
+        
 
         # Instantiate a new BlobClient object
         """
@@ -63,7 +64,7 @@ class PythonBlobLab(object):
         """ 
     
         # [Put your code here]
-        my_blob_client = my_container_client.get_blob_client("blobforlab")
+
 
     
         #Upload the BlobSample.txt file using the blob client
@@ -82,8 +83,7 @@ class PythonBlobLab(object):
         """
         
         # [Put your code here]
-        with open(self.source_file, "rb") as data:
-            my_blob_client.upload_blob(data, blob_type="BlockBlob")
+
 
        
 
