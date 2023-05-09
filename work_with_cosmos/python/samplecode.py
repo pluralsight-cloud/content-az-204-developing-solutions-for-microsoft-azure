@@ -3,33 +3,33 @@
 """
 FILE: samplecode.py
 DESCRIPTION:
-    This file provides a guided experience in performing a few basic tasks against Azure Blob storage.
+    This file provides a guided experience in performing a few basic tasks against Azure Cosmos DB.
 USAGE: python samplecode.py
     IMPORTANT:
-    Make sure you have retrieved the primary connection string from the pre-deployed storage account
+    Make sure you have retrieved the primary connection string from the pre-deployed Cosmos DB account
     using the Azure Portal. Find the my_connection_string variable, below, and assign the connection string
     that you copied to that variable by pasting it between the double-quotes.
-
-    Take note of the source_file variable just below the my_connection_string variable. You will need that
-    for the last block of code in this exercise.
     
     Save your work before running the code.
 """
 import os
 
-class PythonBlobLab(object):
+class PythonCosmosLab(object):
 
-    # Hint: To make use of these variables in code, you need to prepend them with "self" like this: self.my_connection_string and self.source_file
+    # Hint: To make use of this variable in code, you need to prepend them with "self" like this: self.my_connection_string and self.source_file
     my_connection_string = "[PASTE YOUR CONNECTION STRING WRAPPED IN DOUBLE-QUOTES]"
-    source_file = "BlobSample.txt"
 
     def practice_operations(self):
 
-        # Instantiate a BlobServiceClient using a connection string
+        # Instantiate a CosmosClient using a connection string
         """
+        XXXXXX Fix this 
         Hint: This requires two lines of code:
         First, you will need to import the BlobServiceClient from azure.storage.blob,
         then, you will instantiate the client object.
+        
+        
+        database = client.create_database_if_not_exists(id=DATABASE_ID)
         """
 
         # [Put your code here]        
