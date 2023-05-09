@@ -13,7 +13,7 @@ class Program
             //  will make it somewhat easier to follow in the video walkthrough and lab guide.
             //  However, use the *exact* names given for the database and container resources you will
             //  create in order to a) Help the lab grading engine properly indicate lab completion, and 
-            //  b) Help k eep your .NET work separate from your Python work, should you decide to do both.
+            //  b) Help keep your .NET work separate from your Python work, should you decide to do both.
             
             //Copy the primary connection string from the Cosmos DB account in the portal and paste it in place of the placeholder, below
             string my_connection_string = "[ConnectionString]";
@@ -61,7 +61,7 @@ class Program
             // the task. Your code will start like this:
             //                            ItemResponse response = await . . . 
             
-            ItemResponse item = await this.container.CreateItemAsync(test, new PartitionKey(test.status));
+            ItemResponse item = await myContainer.CreateItemAsync(myItem, new PartitionKey(myItem.labPK));
 
     }
         
