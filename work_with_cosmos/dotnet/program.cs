@@ -46,7 +46,7 @@ class Program
             GenericItem myItem = new(
               id: "70b63682-b93a-4c77-aad2-65501347265f",
               itemName: "This is my string",
-              labPK: "active"
+              labPK: "Springfield"
             );
                        
            // Declare a GenericItem to asynchronously upsert myItem to myContainer.
