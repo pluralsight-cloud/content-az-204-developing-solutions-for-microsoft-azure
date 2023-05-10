@@ -17,7 +17,7 @@ import os
 class PythonCosmosLab(object):
 
     # Hint: To make use of this variable in code, you need to prepend them with "self" like this: self.my_connection_string and self.source_file
-    my_connection_string = "[PASTE YOUR CONNECTION STRING WRAPPED IN DOUBLE-QUOTES]"
+    my_connection_string = "AccountEndpoint=https://pluralsightlab-776-794.documents.azure.com:443/;AccountKey=URP8SlGBGXpZpDs4U5HXnRf0DLMxj2iotGV0JaMpXohkLCDjmDExxN6y5zVYVHuHlYloNnlCC4k9ACDb2O88lg==;"
 
     def practice_operations(self):
 
@@ -78,7 +78,7 @@ class PythonCosmosLab(object):
         --A generic item has been created for you.
 
         """ 
-        generic_item = {'id' : '70b63682-b93a-4c77-aad2-65501347265f,
+        generic_item = {'id' : '70b63682-b93a-4c77-aad2-65501347265f',
                        'itemName': 'AnyStringWillDo',
                        'labPK': 'New Delhi'
                        }
