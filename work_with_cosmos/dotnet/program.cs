@@ -25,7 +25,7 @@ class Program
 
             //Asynchronously create a Database, called myDatabase, with a resource Id/name of *exactly* "LabDBNet";
             //Requirement: Attempt to create the database only if it does not already exist.
-            //Hints: The code for this code and all the commands that follow will be in this form:
+            //Hints: The code for this code and most of the other commands that follow will be in this form:
             //      Class myClass = await myPreviousObject.Create{Class}IfNotExistsAsync({one or more properties});
             
             Database myDatabase = await myClient.CreateDatabaseIfNotExistsAsync("LabDBNet");
