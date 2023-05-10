@@ -16,7 +16,7 @@ class Program
             //  b) Help keep your .NET work separate from your Python work, should you decide to do both.
             
             //Copy the primary connection string from the Cosmos DB account in the portal and paste it in place of the placeholder, below
-            string my_connection_string = "[PASTE CONNECTION STRING HERE]";
+            string my_connection_string = "[PASTE CONNECTION STRING, WRAPPED IN DOUBLE-QUOTES, HERE]";
 
             //Declare a CosmosClient, called myClient, using the connection string
             
