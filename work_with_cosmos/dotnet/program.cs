@@ -30,7 +30,7 @@ class Program
             
             Database myDatabase = await myClient.CreateDatabaseIfNotExistsAsync("LabDBNet");
 
-            //Asynchronously create a Container, called myContainer, on myDatabase, it does not already exist,
+            //Asynchronously create a Container, called myContainer, on myDatabase, if it does not already exist,
             //  passing in the *exact* name of "LabItemsNet" and a partition key of *exactly* "/labPK"
             
             Container myContainer = await myDatabase.CreateContainerIfNotExistsAsync("LabItemsNet","/labPK");
