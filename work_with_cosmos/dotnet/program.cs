@@ -20,7 +20,7 @@ class Program
 
             //Declare a CosmosClient, called myClient, using the connection string
             
-            CosmosClient myClient = new (my_connection_string);
+            CosmosClient myClient = new (connectionString: my_connection_string);
 
 
             //Asynchronously create a Database, called myDatabase, with a resource Id/name of *exactly* "LabDBNet";
