@@ -16,7 +16,7 @@ class Program
             //  b) Help keep your .NET work separate from your Python work, should you decide to do both.
             
             //Copy the primary connection string from the Cosmos DB account in the portal and paste it in place of the placeholder, below
-            string my_connection_string = "AccountEndpoint=https://pluralsightlab-776-2c4.documents.azure.com:443/;AccountKey=BhvFeLlURzbSso1YW7Q8egOeEwMuITrZIkDYICmOlcMCFjfSHLSnLxqfooCGqdZyq2487SOWR9ISACDbJyNaFA==;";
+            string my_connection_string = "[PASTE CONNECTION STRING HERE]";
 
             //Declare a CosmosClient, called myClient, using the connection string
             
@@ -26,7 +26,7 @@ class Program
             //Asynchronously create a Database, called myDatabase, with a resource Id/name of *exactly* "LabDBNet";
             //Requirement: Attempt to create the database only if it does not already exist.
             //Hints: The code for this code and all the commands that follow will be in this form:
-            //      Class myClass = await myPreviousClass.Create{Class}IfNotExistsAsync({property(s)});
+            //      Class myClass = await myPreviousObject.Create{Class}IfNotExistsAsync({one or more properties});
             
             Database myDatabase = await myClient.CreateDatabaseIfNotExistsAsync("LabDBNet");
 
@@ -38,9 +38,10 @@ class Program
             //Use the GenericItem record (just outside of the Main method) to create an item object, 
             //  called myItem, to be upserted to the container.
             //IMPORTANT: the id property should be assigned a unique value, such as a GUID, like this:
-            //    "70b63682-b93a-4c77-aad2-65501347265f". The itemName property can be assigned any string and the labPK
-            //    property should be assigned "active" or "archived" -- though, to be truthful, there are no
-            //    actual constraints preventing labPK from being any value you choose.
+            //    "70b63682-b93a-4c77-aad2-65501347265f". The itemName property can be assigned any string and 
+            //    the labPK property, which is the partition key, should be assigned an appropriate
+            //    partition key value — perhaps, a city name, such as "Springfield" or "New Delhi" — 
+            //    though, there are no actual constraints preventing labPK from being any value you choose.
 
             GenericItem myItem = new(
               id: "70b63682-b93a-4c77-aad2-65501347265f",
@@ -48,7 +49,7 @@ class Program
               labPK: "active"
             );
                        
-            // Declare a GenericItem to asynchronously upsert myItem to myContainer.
+           // Declare a GenericItem to asynchronously upsert myItem to myContainer.
            GenericItem upsertedItem = await myContainer.UpsertItemAsync<GenericItem>(myItem, new PartitionKey(myItem.labPK));
 
     } 
