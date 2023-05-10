@@ -23,69 +23,70 @@ class PythonCosmosLab(object):
 
         # Instantiate a CosmosClient using a connection string
         """
-        XXXXXX Fix this 
         Hint: This requires two lines of code:
-        First, you will need to import the BlobServiceClient from azure.storage.blob,
-        then, you will instantiate the client object.
-        
-        
-        database = client.create_database_if_not_exists(id=DATABASE_ID)
+        First, you will need to import the CosmosClient and PartitionKey from azure.cosmos,
+        then, you will instantiate the CosmosClient object.
         """
 
         # [Put your code here]        
+        from azure.cosmos import CosmosClient, PartitionKey
+        my_cosmos_client = CosmosClient.from_connection_string(self.my_connection_string)
 
-        
-
-        # Instantiate a ContainerClient object and create the container.
+        # Instantiate a Database object and create the database if it does not already exist.
         """
         Instructions:
-        Name the ContainerClient object anything you like, but use this *exact* name for the container
-        that you want to add to the storage account: "containerforlab".
+        Name the Database object anything you like, but use this *exact* name for the database
+        that you want to add Cosmos account: "LabDBPython".
         (This allows the lab grading feature to correctly detect that you completed the objective.)
 
         Hint:
         There are a few ways to do this, but in the solution video and the lab guide, 
-        we will be creating the container using the BlobServiceClient object we just instantiated.
-        It's just one line of code to instantiate the object and create the container.
+        we will be creating the container using the CosmosClient object we just instantiated.
+        It's just one line of code to instantiate the object and create the database.
         """
         # [Put your code here]
-
+        my_database = my_cosmos_client.create_database_if_not_exists("LabDBPython")
         
-
-        # Instantiate a new BlobClient object
-        """
-        Hints:
-        --There are a few ways to do this, but in the solution video and the lab guide, 
-        we will be creating the object using the ContainerClient object we just instantiated.
-
-        --It's just one line of code that uses the get_blob_client method on the ContainerClient.
-
-        --You will pass the blob name as a string in the method, even though the blob does not yet exist.
-        """ 
-    
-        # [Put your code here]
-
-
-    
-        #Upload the BlobSample.txt file using the blob client
+        # Instantiate a Container object and create the container on the database you just created.
         """
         Instructions:
-        The blob type is "BlockBlob"
-        
+        Name the Container object anything you like, but use this *exact* name for the container
+        that you want to add to the LabDBPython database: "LabItemsPython".
+        (This allows the lab grading feature to correctly detect that you completed the objective.)
+
         Hints:
         --There are a few ways to do this, but in the solution video and the lab guide, 
-            we will be using the "with open() as data:" construct to open the locally stored
-            file that we assigned to the self.source_file variable near the top of this file,
-            and then follow that with the upload_blob method on the BlobCient we just created.
-        --The open function takes two arguments, the first is the path to the source file, this case, self.source_file,
-            and the second is the mode. The mode we want to use in this case is "rb", which stands for "read binary".   
-
-        """
+          we will be creating the container using the Database object we just instantiated.
+          
+        --It's just one line of code to instantiate the object and create the container.
         
+        --The code should pass the name of the container and the partition key path and just let
+           the throughput value default. You have been provided with a variable for the
+           partition key path that you need to use in your code.
+        """
+        partition_key_path = PartitionKey(path="/labPK")
         # [Put your code here]
+        my_container = my_database.create_container_if_not_exists ("LabItemsPython",partition_key_path)
+        
 
+        # Insert an item into the container
+        """
+        Hints:
+        --There are a few ways to do this, but in the solution video and the lab guide, 
+        we will be creating the item using the Container object we just instantiated.
 
-       
+        --A generic item has been created for you.
 
-example=PythonBlobLab()
+        """ 
+        generic_item = {'id' : '70b63682-b93a-4c77-aad2-65501347265f,
+                       'itemName': 'AnyStringWillDo',
+                       'labPK': 'New Delhi'
+                       }
+
+        # [Put your code here]
+        my_container.create_item(body=generic_item)
+
+    
+      
+example=PythonCosmosLab()
 example.practice_operations()
