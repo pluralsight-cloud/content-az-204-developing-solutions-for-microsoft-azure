@@ -20,7 +20,7 @@ class Program
 
             //Declare a CosmosClient, called myClient, using the connection string
             
-            CosmosClient myClient = new (connectionString: my_connection_string);
+            
 
 
             //Asynchronously create a Database, called myDatabase, with a resource Id/name of *exactly* "LabDBNet";
@@ -28,12 +28,12 @@ class Program
             //Hints: The code for this code and most of the other commands that follow will be in this form:
             //      Class myClass = await myPreviousObject.Create{Class}IfNotExistsAsync({one or more properties});
             
-            Database myDatabase = await myClient.CreateDatabaseIfNotExistsAsync("LabDBNet");
+            
 
             //Asynchronously create a Container, called myContainer, on myDatabase, if it does not already exist,
             //  passing in the *exact* name of "LabItemsNet" and a partition key of *exactly* "/labPK"
             
-            Container myContainer = await myDatabase.CreateContainerIfNotExistsAsync("LabItemsNet","/labPK");
+            
             
             //Use the GenericItem record (just outside of the Main method) to create an item object, 
             //  called myItem, to be upserted to the container.
@@ -43,14 +43,10 @@ class Program
             //    partition key value — perhaps, a city name, such as "Springfield" or "New Delhi" — 
             //    though, there are no actual constraints preventing labPK from being any value you choose.
 
-            GenericItem myItem = new(
-              id: "70b63682-b93a-4c77-aad2-65501347265f",
-              itemName: "This is my string",
-              labPK: "Springfield"
-            );
+            
                        
            // Declare a GenericItem to asynchronously upsert myItem to myContainer.
-           GenericItem upsertedItem = await myContainer.UpsertItemAsync<GenericItem>(myItem, new PartitionKey(myItem.labPK));
+           
 
     } 
     public record GenericItem (
