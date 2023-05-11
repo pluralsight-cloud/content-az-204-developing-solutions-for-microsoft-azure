@@ -29,8 +29,8 @@ class PythonCosmosLab(object):
         """
 
         # [Put your code here]        
-        from azure.cosmos import CosmosClient, PartitionKey
-        my_cosmos_client = CosmosClient.from_connection_string(self.my_connection_string)
+        
+        
 
         # Instantiate a Database object and create the database if it does not already exist.
         """
@@ -45,7 +45,7 @@ class PythonCosmosLab(object):
         It's just one line of code to instantiate the object and create the database.
         """
         # [Put your code here]
-        my_database = my_cosmos_client.create_database_if_not_exists("LabDBPython")
+        
         
         # Instantiate a Container object and create the container on the database you just created.
         """
@@ -66,7 +66,7 @@ class PythonCosmosLab(object):
         """
         partition_key_path = PartitionKey(path="/labPK")
         # [Put your code here]
-        my_container = my_database.create_container_if_not_exists ("LabItemsPython",partition_key_path)
+        
         
 
         # Insert an item into the container
@@ -84,7 +84,7 @@ class PythonCosmosLab(object):
                        }
 
         # [Put your code here]
-        my_container.create_item(body=generic_item)
+        
 
     
       
