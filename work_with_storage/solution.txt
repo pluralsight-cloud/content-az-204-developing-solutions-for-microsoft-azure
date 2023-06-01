@@ -75,7 +75,7 @@ class PythonBlobLab(object):
         --There are a few ways to do this, but in the solution video and the lab guide, 
             we will be using the "with open() as data:" construct to open the locally stored
             file that we assigned to the self.source_file variable near the top of this file,
-            and then follow that with the upload_blob method on the BlobCient we just created.
+            and then follow that with the upload_blob method on the BlobClient we just created.
         --The open function takes two arguments, the first is the path to the source file, this case, self.source_file,
             and the second is the mode. The mode we want to use in this case is "rb", which stands for "read binary".   
 
